@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokédex</title>
+</head>
+<body>
+    <h1>Pokédex</h1>
+
+    <a href="/add">
+        <button>Adicionar Novo Pokémon</button>
+    </a>
+
+    <ul>
+        <% pokemons.forEach(function(pokemon) { %>
+            <li>
+                <a href="/pokemon/<%= pokemon.id %>"><%= pokemon.nome %></a> - <%= pokemon.tipo %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <ul>
+
+
+    <a href="/trainers">
+        <button>Ver Lista de Treinadores</button>
+    </a>
+
+</body>
+</html>
