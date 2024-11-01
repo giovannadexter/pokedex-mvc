@@ -30,17 +30,26 @@ const addPokemon = (req, res) => {
 };
 
 const addTrainer = (req, res) => {
-  const {nome, pokemon1, pokemon2, pokemon3} = req.body;
-  if (nome && pokemon1 && pokemon2 && pokemon3){
-    trainerModel.createTrainer(nome,pokemon1, pokemon2, pokemon3);
+  const { nome, pokemonNomes, pokemonTipos } = req.body;
+  const pokemonNamesArray = Array.isArray(pokemonNomes) ? pokemonNomes : [pokemonNomes];
+  const pokemonTypesArray = Array.isArray(pokemonTipos) ? pokemonTipos : [pokemonTipos];
+
+  const pokemons = pokemonNamesArray.map((nome, index) => ({
+    nome,
+    tipo: pokemonTypesArray[index]
+  }));
+
+  if (nome && pokemons.length > 0) {
+    trainerModel.createTrainer(nome, pokemons);
     res.redirect('/trainers');
-  }else{
+  } else {
     res.status(400).send('Dados Inválidos');
   }
-}
+};
+
 
   const getTrainer = (req, res) => {
-    const trainer = trainerModel.getTrainersById(req.params.id);
+    const trainer = trainerModel.getTrainerById(req.params.id);
     if (trainer) {
       res.render('trainer', { trainer });
     } else {

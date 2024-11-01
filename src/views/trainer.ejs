@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title><%= trainer.nome %></title>
+    <meta charset="UTF-8">
+    <title>Detalhes do Treinador</title>
 </head>
 <body>
-  <h1><%= trainer.nome %></h1>
-  <p>Pokemon1: <%= trainer.pokemon1 %></p>
-  <p>Pokemon2: <%= trainer.pokemon2 %></p>
-  <p>Pokemon3: <%= trainer.pokemon3 %></p>
-  <a href="/">Voltar à Pokédex</a>
+    <h1>Detalhes do Treinador: <%= trainer.nome %></h1>
+
+    <h2>Pokémons</h2>
+    <ul>
+        <% trainer.pokemons.forEach(function(pokemon) { %>
+            <li>
+                <strong>Nome:</strong> <%= pokemon.nome %> <br>
+                <strong>Tipo:</strong> <%= pokemon.tipo %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <a href="/trainers">Voltar para a Lista de Treinadores</a>
 </body>
 </html>

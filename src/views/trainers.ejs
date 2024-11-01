@@ -10,7 +10,10 @@
     <ul>
         <% trainers.forEach(function(trainer) { %>
             <li>
-                <a href="/trainer/<%= trainer.id %>"><%= trainer.nome %></a> - <%= trainer.pokemon1 %>, <%= trainer.pokemon2 %>, <%= trainer.pokemon3 %>
+                <a href="/trainer/<%= trainer.id %>"><%= trainer.nome %></a> - 
+                <% trainer.pokemons.forEach(function(pokemon, index) { %>
+                    <%= pokemon.nome %><%= index < trainer.pokemons.length - 1 ? ', ' : '' %>
+                <% }); %>
             </li>
         <% }); %>
     </ul>
